@@ -1,0 +1,130 @@
+/* ============================================== */
+/*  CONFIGURAÇÕES GERAIS DO SITE */
+/* ============================================== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8fafc;
+  color: #212529;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* ativa rolagem suave */
+}
+
+/* ============================================== */
+/*  HEADER (TOPO FIXO) */
+/* ============================================== */
+.main-header {
+  background: linear-gradient(90deg, #0d6efd, #007bff);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
+  margin-bottom: 0 !important;
+  z-index: 1000;
+}
+
+.main-header a {
+  transition: 0.3s ease;
+}
+
+.main-header a:hover {
+  text-shadow: 0 0 8px rgba(255,255,255,0.8);
+}
+
+.logo-icon {
+  font-size: 1.8rem;
+  margin-right: 8px;
+}
+
+/* ============================================== */
+/*  HERO (CARROSSEL DE IMAGENS) */
+/* ============================================== */
+.carousel-item {
+  height: 88vh;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.8s ease-in-out;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Define as imagens do carrossel */
+.hero-image-1 {
+  background-image: url("../images/hero1.jpg");
+}
+.hero-image-2 {
+  background-image: url("../images/hero2.jpg");
+}
+.hero-image-3 {
+  background-image: url("../images/hero3.jpg");
+}
+
+/* Overlay escura sobre a imagem */
+.overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 0;
+}
+
+/* Centraliza o texto do carrossel */
+.carousel-caption {
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ============================================== */
+/*  FORMULÁRIO */
+/* ============================================== */
+#form-section {
+  scroll-margin-top: 100px;
+}
+
+.card {
+  border: none;
+  border-radius: 1rem;
+}
+
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13,110,253,0.25);
+}
+
+/* ============================================== */
+/*  CORREÇÃO DO ESPAÇO ENTRE HEADER E CARROSSEL */
+/* ============================================== */
+body, main {
+  margin: 0;
+  padding: 0;
+}
+
+#heroCarousel {
+  margin-top: -50px; /* encosta o carrossel no header sem espaço branco */
+  padding-top: 0 !important;
+}
+
+/* ============================================== */
+/*  RESPONSIVIDADE */
+/* ============================================== */
+@media (max-width: 768px) {
+  .carousel-item {
+    height: 65vh;
+  }
+  .carousel-caption h1 {
+    font-size: 1.75rem;
+  }
+}
+@media (max-width: 576px) {
+  .carousel-item {
+    height: 50vh;
+  }
+  .carousel-caption h1 {
+    font-size: 1.5rem;
+  }
+}
