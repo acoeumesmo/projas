@@ -54,13 +54,13 @@ html {
 
 /* Define as imagens do carrossel */
 .hero-image-1 {
-  background-image: url("../images/hero1.jpg");
+  background-image: url("/static/images/hero1.jpg");
 }
 .hero-image-2 {
-  background-image: url("../images/hero2.jpg");
+  background-image: url("/static/images/hero2.jpg");
 }
 .hero-image-3 {
-  background-image: url("../images/hero3.jpg");
+  background-image: url("/static/images/hero3.jpg");
 }
 
 /* Overlay escura sobre a imagem */
