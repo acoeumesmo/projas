@@ -3,11 +3,18 @@ import json
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 
+# Configuração básica do Flask
 app = Flask(__name__, static_folder='static', template_folder='templates')
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "dev_secret_key")
 
-DATA_FILE = "complaints.json"
+# Caminho absoluto do arquivo de dados (importante para o Render)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_FILE = os.path.join(BASE_DIR, "complaints.json")
 
+
+# -----------------------------
+# Funções auxiliares
+# -----------------------------
 def load_complaints():
     if not os.path.exists(DATA_FILE):
         return []
@@ -17,13 +24,22 @@ def load_complaints():
     except (json.JSONDecodeError, IOError):
         return []
 
-def save_complaints(complaints):
-    with open(DATA_FILE, 'w', encoding='utf-8') as f:
-        json.dump(complaints, f, ensure_ascii=False, indent=2)
 
+def save_complaints(complaints):
+    try:
+        with open(DATA_FILE, 'w', encoding='utf-8') as f:
+            json.dump(complaints, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print(f"Erro ao salvar complaints: {e}")
+
+
+# -----------------------------
+# Rotas
+# -----------------------------
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -50,15 +66,21 @@ def submit():
     flash('Reclamação enviada com sucesso!', 'success')
     return redirect(url_for('index'))
 
+
 @app.route('/complaints')
 def complaints():
     complaints = sorted(load_complaints(), key=lambda x: x['created_at'], reverse=True)
     return render_template('complaints.html', complaints=complaints)
 
+
 @app.route('/api/complaints')
 def api_complaints():
     return jsonify(load_complaints())
 
+
+# -----------------------------
+# Execução
+# -----------------------------
 if __name__ == '__main__':
-    #app.run(debug=True)
-    app.run(host='0.0.0.0', port=5000)
+    port = int(os.environ.get("PORT", 5000))  # Render define a porta automaticamente
+    app.run(host='0.0.0.0', port=port)
