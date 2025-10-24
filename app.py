@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "dev_secret_key")
 
 DATA_FILE = "complaints.json"
