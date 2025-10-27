@@ -4,7 +4,7 @@ from transformers import pipeline
 from datetime import datetime
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter, A4
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, Image
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, Image, Paragraph, PageBreak
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.enums import TA_LEFT, TA_CENTER
 from reportlab.graphics.shapes import Drawing
@@ -19,8 +19,14 @@ import re
 import emoji
 
 # --- Configurações ---
-NOME_ARQUIVO_CSV = '/content/drive/MyDrive/quotes2.csv'
-COLUNA_AVALIACOES = 'Quote'
+## Arquivo CSV retirado localmente
+NOME_ARQUIVO_CSV = 'analise_sentimento_alimentos.csv'
+COLUNA_AVALIACOES = 'Comentário_Consumidor'
+
+""" ## Retirada do arquivo pelo Google Drive
+NOME_ARQUIVO_CSV = '/content/drive/MyDrive/quotes2.csv'  # Troque pelo nome real do seu arquivo
+COLUNA_AVALIACOES = 'Quote'         # Troque pelo nome real da coluna com o texto
+"""
 
 # --- Geração Dinâmica do Nome do Arquivo PDF ---
 try:
@@ -33,14 +39,28 @@ timestamp = agora_com_fuso.strftime("%d-%m-%Y_%H-%M")
 NOME_ARQUIVO_PDF = f'relatorio_sentimento_{timestamp}.pdf'
 
 # --- Configurações da Logomarca ---
-CAMINHO_LOGOMARCA = '/content/drive/MyDrive/cachorro.jpeg'
-LARGURA_LOGOMARCA = 100
+CAMINHO_LOGOMARCA = 'logo_soulcare.png'  # Atualize com o caminho correto da logomarca
+
+""" ----- Logomarca online (Google Drive) -----
+CAMINHO_LOGOMARCA = '/content/drive/MyDrive/cachorro.jpeg' #Alterado / carlos
+LARGURA_LOGOMARCA = 100  # Largura em pontos (ajuste conforme necessário)
+ALTURA_LOGOMARCA = 40    # Altura em pontos (ajuste conforme necessário)
+"""
+
+LARGURA_LOGOMARCA = 40
 ALTURA_LOGOMARCA = 40
 
 # ###############################################################
 # --- REGISTRO DE FONTE COM SUPORTE A EMOJI ---
 # ###############################################################
+
+"""--- Emoji fonte do Google Drive ---
 CAMINHO_FONTE_EMOJI = '/content/drive/MyDrive/DejaVuSans.ttf'
+FONTE_PADRAO = 'Helvetica'
+FONTE_PADRAO_NEGRITO = 'Helvetica-Bold'
+"""
+
+CAMINHO_FONTE_EMOJI = 'DejaVuSans.ttf'
 FONTE_PADRAO = 'Helvetica'
 FONTE_PADRAO_NEGRITO = 'Helvetica-Bold'
 
@@ -194,28 +214,38 @@ print(df['Modelo_Escolhido'].value_counts(normalize=True).mul(100).round(2).asty
 # (Funções myFirstPage e myLaterPages não mudam, elas já usam as variáveis FONTE_PADRAO)
 def myFirstPage(canvas, doc):
     canvas.saveState()
-    header_date = timestamp.replace('_', ' ')
     page_width, page_height = A4
     canvas.setFont(FONTE_PADRAO_NEGRITO, 10)
-    header_text = f"Relatório de Análise de Sentimento ({header_date})"
+    header_text = f"Soulcare - Grupo 4"
+    
+    # Configurando e desenhando a logomarca no cabeçalho
+    try:
+        header_picture = Image(CAMINHO_LOGOMARCA, width=50, height=50)
+        header_picture.drawOn(canvas, doc.leftMargin, page_height - 0.75 * inch)  # Posiciona a logo
+    except Exception as e:
+        print(f"Aviso: Não foi possível carregar a logo no cabeçalho: {e}")
+    
     canvas.drawCentredString(page_width / 2, page_height - 0.5 * inch, header_text)
     canvas.line(doc.leftMargin, page_height - 0.7 * inch, page_width - doc.rightMargin, page_height - 0.7 * inch)
     canvas.setFont(FONTE_PADRAO, 8)
-    footer_text = "Página %d" % doc.page
-    canvas.drawCentredString(page_width / 2, 0.5 * inch, footer_text)
+    #footer_text = "Página %d" % doc.page ## O numero da página no rodapé não exibe
+    footer_lines = ["R. Dois, 2877 - Vila Operaria, Rio Claro - SP, 13504-090",  
+    "e-mail: soulcare.fatecrc@gmail.com"] #endereço no rodapé
+    ## footer_text = "Página %d" % doc.page, f"R. Dois, 2877 - Vila Operaria, Rio Claro - SP, 13504-090"
+    for i, line in enumerate(footer_lines):
+        canvas.drawCentredString(page_width / 2, 0.5 * inch - i * 10, line)
     canvas.line(doc.leftMargin, 0.7 * inch, page_width - doc.rightMargin, 0.7 * inch)
     canvas.restoreState()
 
 def myLaterPages(canvas, doc):
     canvas.saveState()
     page_width, page_height = A4
-    header_date = timestamp.replace('_', ' ')
     canvas.setFont(FONTE_PADRAO_NEGRITO, 10)
-    header_text = f"Relatório de Análise de Sentimento ({header_date})"
+    header_text = f"Relatório de Análise de Sentimento"
     canvas.drawCentredString(page_width / 2, page_height - 0.5 * inch, header_text)
     canvas.line(doc.leftMargin, page_height - 0.7 * inch, page_width - doc.rightMargin, page_height - 0.7 * inch)
     canvas.setFont(FONTE_PADRAO, 8)
-    footer_text = "Página %d" % doc.page
+    footer_text = "Página %d" % doc.page ## rodapé com numeração
     canvas.drawCentredString(page_width / 2, 0.5 * inch, footer_text)
     canvas.line(doc.leftMargin, 0.7 * inch, page_width - doc.rightMargin, 0.7 * inch)
     canvas.restoreState()
@@ -246,11 +276,14 @@ except Exception as e:
     print(f"AVISO: Erro ao carregar a logomarca: {e}")
 
 # Título do Relatório (atualizado)
-elements.append(Paragraph("Relatório de Análise de Sentimento (Híbrido)", styles['Title']))
-elements.append(Paragraph(f"Modelo de Texto: {MODELO_TEXTO_NOME}", styles['Normal']))
-elements.append(Paragraph(f"Modelo de Emoji: {MODELO_EMOJI_NOME}", styles['Normal']))
-elements.append(Paragraph(f"Total de Avaliações Analisadas: {len(df)}", styles['Normal']))
+elements.append(Paragraph("Relatório de análise de sentimento", styles['Title']))
+# elements.append(Paragraph("Relatório de Análise de Sentimento (Híbrido)", styles['Title']))
+# elements.append(Paragraph(f"Modelo de Texto: {MODELO_TEXTO_NOME}", styles['Normal'])) ## ocultando essa informação
+# elements.append(Paragraph(f"Modelo de Emoji: {MODELO_EMOJI_NOME}", styles['Normal'])) ## ocultando essa informação
+elements.append(Paragraph(f"Total de avaliações analisadas: {len(df)}", styles['Normal']))
 elements.append(Spacer(1, 12))
+
+
 
 # (Tabela de Resumo e Gráfico de Pizza não mudam, já usam a coluna 'Sentimento')
 contagem_absoluta = df['Sentimento'].value_counts().sort_index()
@@ -269,16 +302,17 @@ t_resumo.setStyle(TableStyle([
     ('GRID', (0, 0), (-1, -1), 1, colors.black),
     ('FONTNAME', (0, 0), (-1, 0), FONTE_PADRAO_NEGRITO),
     ('FONTNAME', (0, 1), (-1, -1), FONTE_PADRAO),
-    ('ALIGN', (1, 1), (-1, -1), 'CENTER'),
+    ('ALIGN', (0, 0), (-1, -1), 'CENTER'),  # Centralizando todas as células
+    ('ALIGN', (0, 1), (0, -1), 'LEFT'),     # Mantendo primeira coluna alinhada à esquerda
 ]))
 
 # --- Geração do Gráfico de Pizza ---
 drawing = Drawing(400, 200)
 pie = Pie()
-pie.x = 50
-pie.y = 10
-pie.width = 150
-pie.height = 150
+pie.x = -20
+pie.y = -150
+pie.width = 300
+pie.height = 300
 pie.data = contagem_absoluta.values.tolist()
 pie.labels = [f'{s}: {v}' for s, v in contagem_absoluta.items()]
 pie.sideLabels = True
@@ -301,21 +335,30 @@ legend.colorNamePairs = list(zip([color_map.get(l, colors.grey) for l in contage
 legend.fontName = FONTE_PADRAO
 legend.fontSize = 8
 
+resumo_grafico_data = [
+    [t_resumo], [drawing]
+]
+
+resumo_grafico_table = Table(resumo_grafico_data, colWidths=[250, 250])  # Distribuição igual do espaço
+resumo_grafico_table.hAlign = 'CENTER'  # Centraliza a tabela na página
+
 drawing.add(pie)
 drawing.add(legend)
 
-resumo_grafico_data = [
-    [t_resumo, drawing]
-]
-resumo_grafico_table = Table(resumo_grafico_data, colWidths=[200, 300])
 
-elements.append(Paragraph("Resumo e Distribuição de Sentimentos", styles['h2']))
+
+
+# Também vamos centralizar o título
+styles['h2'].alignment = 1  # 1 = TA_CENTER (centralizado)
+
+elements.append(Paragraph("Resumo e distribuição de sentimentos", styles['h2']))
 elements.append(resumo_grafico_table)
 elements.append(Spacer(1, 24))
 
 
-# --- Tabela Detalhada (MODIFICADA para incluir a coluna 'Modelo_Escolhido') ---
+elements.append(PageBreak()) # Quebra de página antes da tabela detalhada
 
+# --- Tabela Detalhada (MODIFICADA para incluir a coluna 'Modelo_Escolhido') --
 comment_style = ParagraphStyle(
     name='CommentStyle',
     parent=styles['Normal'],
@@ -326,11 +369,12 @@ comment_style = ParagraphStyle(
 )
 
 # Seleciona as colunas para o PDF, incluindo a nova 'Modelo_Escolhido'
-df_pdf = df[[COLUNA_AVALIACOES, 'Sentimento', 'Estrelas_Preditas', 'Confianca', 'Modelo_Escolhido']]
+# df_pdf = df[[COLUNA_AVALIACOES, 'Sentimento', 'Estrelas_Preditas', 'Confianca', 'Modelo_Escolhido']]
+df_pdf = df[[COLUNA_AVALIACOES, 'Sentimento', 'Estrelas_Preditas', 'Confianca']]
 
 # Define os estilos dos Parágrafos
-header_style = ParagraphStyle(name='HeaderStyle', parent=styles['Normal'], fontName=FONTE_PADRAO_NEGRITO, fontSize=8, alignment=TA_LEFT)
-cell_style = ParagraphStyle(name='CellStyle', parent=styles['Normal'], fontName=FONTE_PADRAO, fontSize=7, alignment=TA_LEFT)
+header_style = ParagraphStyle(name='HeaderStyle', parent=styles['Normal'], fontName=FONTE_PADRAO_NEGRITO, fontSize=8, alignment=TA_CENTER)
+cell_style = ParagraphStyle(name='CellStyle', parent=styles['Normal'], fontName=FONTE_PADRAO, fontSize=7, alignment=TA_CENTER)
 center_cell_style = ParagraphStyle(name='CenterCellStyle', parent=cell_style, alignment=TA_CENTER)
 
 # Cabeçalho (Modificado)
@@ -339,7 +383,7 @@ header = [
     Paragraph('Sentimento', header_style),
     Paragraph('Estrelas', header_style),
     Paragraph('Confiança', header_style),
-    Paragraph('Modelo Usado', header_style) # Nova Coluna
+    #Paragraph('Modelo Usado', header_style) # Nova Coluna
 ]
 
 data_rows = []
@@ -352,14 +396,16 @@ for row in df_pdf.values.tolist():
         Paragraph(str(row[1]), cell_style),
         Paragraph(str(row[2]), center_cell_style),
         Paragraph(f"{float(row[3]):.2f}", center_cell_style),
-        Paragraph(str(row[4]), cell_style) # Nova Coluna
+        #Paragraph(str(row[4]), cell_style) # Nova Coluna
     ])
 
 data_list = [header] + data_rows
 
 # Define as larguras das colunas (Modificado)
 doc_width = A4[0] - 2 * doc.leftMargin
-col_widths = [doc_width * 0.40, doc_width * 0.15, doc_width * 0.10, doc_width * 0.10, doc_width * 0.25]
+# col_widths = [doc_width * 0.40, doc_width * 0.15, doc_width * 0.10, doc_width * 0.10, doc_width * 0.25]
+col_widths = [doc_width * 0.40, doc_width * 0.15, doc_width * 0.10, doc_width * 0.15,]
+
 table = Table(data_list, colWidths=col_widths)
 
 style = TableStyle([
