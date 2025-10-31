@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash, jso
 
 # Configuração básica do Flask
 app = Flask(__name__, static_folder='static', template_folder='templates')
+# Chave em variável de ambiente, conforme boas práticas 12 factors
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "dev_secret_key")
 
 # Caminho absoluto do arquivo de dados (importante para o Render)
