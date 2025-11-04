@@ -73,10 +73,21 @@ def complaints():
     complaints = sorted(load_complaints(), key=lambda x: x['created_at'], reverse=True)
     return render_template('complaints.html', complaints=complaints)
 
-
 @app.route('/api/complaints')
 def api_complaints():
     return jsonify(load_complaints())
+
+@app.route("/report")
+def relatorio():
+
+    '''
+    Página de relatório de análise de sentimento.
+    Renderiza o arquivo 'templates/report.html'.
+    '''
+    
+
+    return render_template("relatorio.html")
+
 
 
 # -----------------------------
@@ -84,4 +95,4 @@ def api_complaints():
 # -----------------------------
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))  # Render define a porta automaticamente
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='127.0.0.1', port=port, debug=True)

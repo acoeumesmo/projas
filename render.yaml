@@ -1,33 +1,10 @@
-# ==========================================================
-# Render deployment config for a Flask app (ReclameAli+)
-# ==========================================================
-
 services:
   - type: web
     name: reclameali
     env: python
-    region: oregon  # pode trocar se quiser outro datacenter
+    region: oregon
     buildCommand: |
       pip install --upgrade pip
       pip install -r requirements.txt
     startCommand: gunicorn app:app
     plan: free
-    envVars:
-      - key: PYTHON_VERSION
-        value: 3.10
-      - key: FLASK_ENV
-        value: production
-      - key: PORT
-        value: 10000
-    staticPublishPath: static
-    healthCheckPath: /
-
-    # Evita cache antigo nos arquivos estáticos
-    autoDeploy: true
-    buildFilter:
-      paths:
-        - app.py
-        - templates/**
-        - static/**
-        - requirements.txt
-        - render.yaml

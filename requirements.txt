@@ -1,3 +1,11 @@
 flask
 gunicorn
-
+requests
+beautifulsoup4
+pandas
+nltk
+reportlab
+gspread
+google-auth
+oauth2client
+Flask-Cors==4.0.0

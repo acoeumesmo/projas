@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center mb-4">
+  <!-- Título e descrição -->
+  <h2 class="fw-semibold text-primary">Relatórios</h2>
+  <p class="text-muted">
+    Clique em <b>"Rodar Web Scraping e Análise"</b> para raspar a página e gerar o relatório automaticamente.
+  </p>
+
+  <!-- Botões de ação -->
+  <div class="d-flex justify-content-center gap-2 report-actions flex-wrap">
+    <!-- Botão que dispara o scraping e análise -->
+    <button id="btn-run" class="btn btn-primary">
+      🔍 Rodar Web Scraping e Análise
+    </button>
+
+    <!-- Link para baixar o relatório PDF gerado -->
+    <a class="btn btn-outline-secondary" href="">
+      ⬇️ Baixar PDF
+    </a>
+  </div>
+{% endblock %}
+  
+
+{% block scripts %}
+  <script src="{{ url_for('static', filename='js/relatorio.js') }}"></script>
+{% endblock %}
