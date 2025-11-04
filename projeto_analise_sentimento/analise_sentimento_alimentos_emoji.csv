@@ -1,0 +1,52 @@
+﻿ID_Review,Lote_Produto,Data_Avaliação,Avaliação_Nota,Comentário_Consumidor,Sentimento_Geral,Aspecto_Focalizado
+1,LOTE_X22,09-01-25,5,"O melhor que já comi! O sabor é incrivelmente fresco, parece que foi feito na hora. Comprarei mais com certeza.",Positivo,Sabor
+2,LOTE_X22,09-01-25,4,😍,Positivo,Textura
+3,LOTE_Y15,09-01-25,2,"Fiquei decepcionado. O produto chegou mole, a textura não era a que eu esperava. Parece que a refrigeração falhou.",Negativo,Textura
+4,LOTE_Z03,09-02-25,5,Qualidade excelente! O sabor é suave e a cor vibrante. Recomendo a todos.,Positivo,Sabor
+5,LOTE_W40,09-02-25,3,"É um produto ok. Nada de espetacular, mas cumpre o prometido. Neutro em tudo.",Neutro,Sabor
+6,LOTE_X22,09-02-25,1,Horrível! O gosto estava amargo e intragável. Joguei fora metade do pacote.😍,Negativo,Sabor
+7,LOTE_Y15,09-03-25,5,A embalagem é super prática e o sistema de abre-fecha funciona muito bem. O produto é delicioso!,Positivo,Embalagem
+8,LOTE_Y15,09-03-25,4,Preço imbatível pela qualidade que oferece. A fábrica está de parabéns!,Positivo,Preço
+9,LOTE_Z03,09-04-25,3,Textura ruim,Negativo,Textura
+10,LOTE_W40,09-04-25,5,Simplesmente maravilhoso! Chegou rápido e o sabor estava no ponto. Nota 10!,Positivo,Sabor
+11,LOTE_X22,09-04-25,4,"Achei um pouco doce demais, mas no geral, a qualidade é superior. Quatro estrelas.",Positivo,Sabor
+12,LOTE_Y15,09-05-25,2,Embalhagem amassada,Negativo,Embalagem
+13,LOTE_Z03,09-05-25,5,"Perfeito, sem defeitos. Sabor e consistência impecáveis. Melhor que a marca concorrente.",Positivo,Textura
+14,LOTE_W40,09-06-25,3,"Neutro. Não me impressionou, a textura é um pouco aguada. Não compraria de novo.",Neutro,Textura
+15,LOTE_X22,09-06-25,5,"Produto fresco e delicioso! A data de validade está bem longe, o que é ótimo.",Positivo,Sabor
+16,LOTE_Y15,09-06-25,4,Muito bom. Entregue no prazo e a embalagem veio intacta. Satisfeito.,Positivo,Embalagem
+17,LOTE_Z03,09-07-25,1,"O sabor estava estranho, com gosto de metal. É um erro grave de qualidade.",Negativo,Sabor
+18,LOTE_W40,09-07-25,5,Sempre compro. É a melhor opção de preço e o sabor nunca decepciona.,Positivo,Preço
+19,LOTE_X22,09-08-25,3,"Achei a porção pequena pelo que custa. O sabor é bom, mas o preço desanima.",Neutro,Preço
+20,LOTE_Y15,09-08-25,5,Textura cremosa e sem grumos. Minha família toda adorou. Recompra garantida.,Positivo,Textura
+21,LOTE_Z03,09-09-25,4,Bom produto. A consistência é agradável ao paladar. Recomendo.,Positivo,Textura
+22,LOTE_W40,09-09-25,2,Não vi nada de diferente. O produto é genérico e sem graça. Poderia ter mais tempero.,Negativo,Sabor
+23,LOTE_X22,09-10-25,5,Excelente produto! A cor e o cheiro são convidativos. Virei fã.,Positivo,Sabor
+24,LOTE_Y15,09-10-25,3,Embalhagem Simples,Neutro,Embalagem
+25,LOTE_Z03,09-11-25,5,Preço imbatível pela qualidade que oferece. A fábrica está de parabéns!,Positivo,Preço
+26,LOTE_W40,09-11-25,4,"Gostei, mas a entrega demorou um pouco. O produto é de alta qualidade.",Positivo,Sabor
+27,LOTE_X22,09-12-25,2,Comprei dois e um veio com a data de validade muito próxima. Fiquem atentos!,Negativo,Sabor
+28,LOTE_Y15,09-12-25,5,"Sabor delicioso, o ponto de sal é perfeito. Vou comprar sempre que puder.",Positivo,Sabor
+29,LOTE_Z03,09-13-25,3,A embalagem é difícil de abrir. Quase derrubei tudo. O gosto é neutro.,Neutro,Embalagem
+30,LOTE_W40,09-13-25,5,"Simplesmente perfeito! Não alterem nada na receita, está ótimo assim.",Positivo,Sabor
+31,LOTE_X22,09-14-25,4,Muito bom. A textura é macia e a quantidade é satisfatória pelo valor.,Positivo,Textura
+32,LOTE_Y15,09-14-25,1,Recebi o produto azedo. Claramente um problema no processamento ou armazenamento.,Negativo,Sabor
+33,LOTE_Z03,09-15-25,5,Adorei! A textura aveludada faz toda a diferença. Superou minhas expectativas.,Positivo,Textura
+34,LOTE_W40,09-15-25,4,"Ótimo produto, mas o design da embalagem não é muito atraente.",Positivo,Embalagem
+35,LOTE_X22,09-16-25,3,"Razoável. O sabor é aceitável, mas a embalagem poderia ser mais ecológica.",Neutro,Embalagem
+36,LOTE_Y15,09-16-25,5,Melhor produto da categoria no quesito preço. E a qualidade é top!,Positivo,Preço
+37,LOTE_Z03,09-17-25,2,"A consistência estava muito rala, parecia água. O lote deve ter tido algum erro de produção.",Negativo,Textura
+38,LOTE_W40,09-17-25,5,Sabor e frescor incomparáveis. É um prazer consumir este produto.,Positivo,Sabor
+39,LOTE_X22,09-18-25,4,"Bom produto, sem surpresas desagradáveis. Vale a pena a compra.",Positivo,Sabor
+40,LOTE_Y15,09-18-25,3,"Neutro. A textura é estranha, meio borrachuda. Sabor normal.",Neutro,Textura
+41,LOTE_Z03,09-19-25,5,O produto é delicioso e a embalagem chegou super bem vedada e protegida.,Positivo,Embalagem
+42,LOTE_W40,09-19-25,1,Caro,Negativo,Preço
+43,LOTE_X22,09-20-25,4,"Gostei bastante, a proporção de ingredientes está correta. É saboroso.",Positivo,Sabor
+44,LOTE_Y15,09-20-25,5,Excelente! A textura derrete na boca. É o meu novo lanche favorito.,Positivo,Textura
+45,LOTE_Z03,09-21-25,3,Compraria novamente se estivesse em promoção. O preço normal é um pouco salgado.,Neutro,Preço
+46,LOTE_W40,09-21-25,5,O produto é superior aos outros do mercado. A qualidade é visível no sabor.,Positivo,Sabor
+47,LOTE_X22,09-22-25,2,O produto veio com um cheiro esquisito. Tive que descartar por segurança.,Negativo,Sabor
+48,LOTE_Y15,09-22-25,4,"Muito bom! A nova máquina de processamento melhorou a consistência, parabéns.",Positivo,Textura
+49,LOTE_Z03,09-23-25,5,A entrega foi impecável e o produto está perfeito. Recomendo de olhos fechados.,Positivo,Embalagem
+50,LOTE_W40,09-23-25,1,Sem gosto,Negativo,Textura
+
