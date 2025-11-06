@@ -25,7 +25,7 @@ COLUNA_AVALIACOES = 'Comentário_Consumidor'
 
 """ ## Retirada do arquivo pelo Google Drive
 NOME_ARQUIVO_CSV = '/content/drive/MyDrive/quotes2.csv'  # Troque pelo nome real do seu arquivo
-COLUNA_AVALIACOES = 'Quote'         # Troque pelo nome real da coluna com o texto
+COLUNA_AVALIACOES = 'Quote'     # Troque pelo nome real da coluna com o texto
 """
 
 # --- Geração Dinâmica do Nome do Arquivo PDF ---
