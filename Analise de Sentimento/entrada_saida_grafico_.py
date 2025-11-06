@@ -174,26 +174,41 @@ df = pd.concat([
 # ###############################################################
 # --- NOVO: LÓGICA DE DECISÃO (Emoji vs Texto) ---
 # ###############################################################
+# ... (Presumindo que seu DataFrame 'df' e a 'COLUNA_AVALIACOES' já existem) ...
+
 def escolher_melhor_analise(row):
     texto = str(row[COLUNA_AVALIACOES])
+    contagem_emoji = emoji.emoji_count(texto)
+    comprimento_texto = len(texto)
 
-    # Verifica se existe algum emoji no texto
-    if emoji.emoji_count(texto) > 0:
-        # Se tem emoji, usa o resultado do modelo 'cardiffnlp'
-        return pd.Series([
-            row['Sentimento_Emoji'],
-            row['Estrelas_Emoji'],
-            row['Confianca_Emoji'],
-            'M_Emoji (Cardiff)' # Modelo escolhido
-        ])
-    else:
-        # Se NÃO tem emoji, usa o resultado do modelo 'nlptown'
+    # Nova lógica:
+    # Usa o modelo de TEXTO (nlptown) se:
+    # 1. NÃO houver emojis (contagem_emoji == 0)
+    #    OU
+    # 2. O texto tiver 3 ou mais caracteres (comprimento_texto >= 3)
+    if (contagem_emoji == 0) or (comprimento_texto >= 3):
+        # Se NÃO tem emoji, OU se o texto é longo o suficiente,
+        # usa o resultado do modelo 'nlptown'
         return pd.Series([
             row['Sentimento_Texto'],
             row['Estrelas_Texto'],
             row['Confianca_Texto'],
             'M_Texto (nlptown)' # Modelo escolhido
         ])
+    else:
+        # Caso contrário (ou seja, TEM emoji E o texto é MUITO CURTO < 3),
+        # usa o resultado do modelo 'cardiffnlp' (casos como "👍", "😞")
+        return pd.Series([
+            row['Sentimento_Emoji'],
+            row['Estrelas_Emoji'],
+            row['Confianca_Emoji'],
+            'M_Emoji (Cardiff)' # Modelo escolhido
+        ])
+
+# Aplica a lógica para criar as colunas FINAIS
+df[['Sentimento', 'Estrelas_Preditas', 'Confianca', 'Modelo_Escolhido']] = df.apply(
+    escolher_melhor_analise, axis=1
+)
 
 # Aplica a lógica para criar as colunas FINAIS
 df[['Sentimento', 'Estrelas_Preditas', 'Confianca', 'Modelo_Escolhido']] = df.apply(
