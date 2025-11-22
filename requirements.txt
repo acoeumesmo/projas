@@ -1,5 +1,6 @@
 # Bibliotecas do Core da Aplicação Web (app.py)
 Flask
+gunicorn
 python-dotenv  # Boa prática para gerenciar FLASK_SECRET_KEY, embora não esteja explícito, é útil.
 
 # Bibliotecas de Web Scraping (Web Scraping.py)
@@ -10,6 +11,7 @@ beautifulsoup4
 pandas
 transformers
 emoji
+torch
 
 # Bibliotecas de Geração de Relatório em PDF (entrada_saida_grafico_.py)
 reportlab

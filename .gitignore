@@ -1,0 +1,56 @@
+
+# AMBIENTES VIRTUAIS
+venv/
+env/
+.venv/
+ENV/
+
+# ARQUIVOS TEMPORÁRIOS E CACHE
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# ARQUIVOS DE DADOS (GERADOS)
+data/
+*.db
+*.sqlite3
+*.csv
+*.json
+
+# Mas manter os seguintes arquivos de config:
+!requirements.txt
+!render.yaml
+!service_account.json  # remova essa linha se estiver usando Secret File no Render
+
+# BUILD / DISTRIBUIÇÃO
+build/
+dist/
+*.egg-info/
+
+# EDITORES / SISTEMAS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ARQUIVOS ESTÁTICOS (apenas compilados)
+static/**/*.map
+static/**/*.tmp
+
+# BACKUPS / TESTES
+*.bak
+*.old
+*.test
+*.temp
+
+
+# PASTAS QUE DEVEM FICAR NO GIT
+# (mesmo que vazias)
+!templates/
+!static/
+!scripts/
+!app.py
+!sheets_handler.py
+!README.md

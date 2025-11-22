@@ -1,7 +1,10 @@
+import subprocess
+import pandas as pd
 import os
 import json
 from datetime import datetime
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, send_from_directory
+from analise.entrada import analise_sentimento
 
 # Configuração básica do Flask
 app = Flask(__name__, static_folder='static', template_folder='templates')
@@ -13,9 +16,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_FILE = os.path.join(BASE_DIR, "complaints.json")
 
 
-# -----------------------------
 # Funções auxiliares
-# -----------------------------
 def load_complaints():
     if not os.path.exists(DATA_FILE):
         return []
@@ -34,9 +35,7 @@ def save_complaints(complaints):
         print(f"Erro ao salvar complaints: {e}")
 
 
-# -----------------------------
 # Rotas
-# -----------------------------
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -77,22 +76,89 @@ def complaints():
 def api_complaints():
     return jsonify(load_complaints())
 
-@app.route("/report")
+
+#rota scraping/analise
+
+RESULTADOS = []   # variável global para o front-end acessar
+RESULTADOS_PDF = []
+
+@app.route("/admin/run-analysis", methods=["POST"])
+def run_analysis():
+    try:
+        # 1. Rodar o Web Scraping (um script externo)
+        result = subprocess.run(
+            ["python", "analise/webscraping.py"],
+            check=True,
+            capture_output=True,
+            text=True
+        )
+        print("WEB SCRAPING:", result.stdout)
+
+    except subprocess.CalledProcessError as e:
+        return jsonify({
+            "success": False,
+            "error": "Erro ao executar webscraping.py",
+            "details": e.stderr
+        }), 500
+
+    try:
+        # 2. Rodar a análise de sentimento (função Python interna)
+        pdf_path, df = analise_sentimento()
+
+        global RESULTADOS_PDF
+        RESULTADOS_PDF = pdf_path
+
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "error": "Erro na função analise_sentimento()",
+            "details": str(e)
+        }), 500
+
+    try:
+        # 3. Converter para dicionário para enviar ao front-end
+        global RESULTADOS
+        RESULTADOS = df.to_dict(orient="records")
+
+        return jsonify({
+            "success": True,
+            "pdf": pdf_path,
+            "total_registros": len(RESULTADOS)
+        })
+
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "error": "Erro ao preparar dados para o front-end",
+            "details": str(e)
+        }), 500
+
+
+@app.route("/relatorio")
 def relatorio():
-
-    '''
-    Página de relatório de análise de sentimento.
-    Renderiza o arquivo 'templates/report.html'.
-    '''
-    
-
     return render_template("relatorio.html")
 
+@app.route("/api/relatorio-data")
+def relatorio_data():
+    return jsonify({"items": RESULTADOS}) 
 
+@app.route("/download-pdf")
+def download_pdf():
+    pdf_dir = os.getcwd()
+    pdf_file = RESULTADOS_PDF  # variável global salva após análise
 
-# -----------------------------
+    if not os.path.exists(os.path.join(pdf_dir, pdf_file)):
+        return "Arquivo PDF não encontrado.", 404
+
+    return send_from_directory(
+        pdf_dir,
+        pdf_file,
+        as_attachment=True
+    )
+
+    
+
 # Execução
-# -----------------------------
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))  # Render define a porta automaticamente
     app.run(host='0.0.0.0', port=port)

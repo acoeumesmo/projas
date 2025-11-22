@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: reclameali
+    name: avalie
     env: python
     region: oregon
     buildCommand: |

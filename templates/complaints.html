@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{% block title %}Reclamações Recebidas{% endblock %}
+{% block title %}Avaliações Recebidas{% endblock %}
 {% block content %}
 <section class="mx-auto" style="max-width: 900px;">
-  <h2 class="mb-4 text-center fw-semibold">Reclamações Recebidas</h2>
+  <h2 class="mb-4 text-center fw-semibold">Avaliações Recebidas</h2>
   {% if complaints %}
   <div class="list-group">
     {% for c in complaints %}
@@ -17,7 +17,7 @@
     {% endfor %}
   </div>
   {% else %}
-  <p class="text-center fs-6 text-muted">Nenhuma reclamação registrada até o momento.</p>
+  <p class="text-center fs-6 text-muted">Nenhuma avaliação registrada até o momento.</p>
   {% endif %}
 </section>
 {% endblock %}

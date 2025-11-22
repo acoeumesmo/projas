@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}Enviar Reclamação{% endblock %}
+{% block title %}Enviar avaliação{% endblock %}
 {% block content %}
 
-<!-- ============================= -->
-<!-- 🎠 CARROSSEL DE DESTAQUE -->
-<!-- ============================= -->
-<section id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+<!-- CARROSSEL -->
+
+<section id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
 
   <div class="carousel-inner">
 
@@ -13,9 +12,9 @@
     <div class="carousel-item active hero-image-1">
       <div class="overlay"></div> <!-- camada escura sobre a imagem -->
       <div class="carousel-caption text-center">
-        <h1 class="fw-bold display-4">Sua voz importa 💬</h1>
-        <p class="lead">Envie sua reclamação e ajude-nos a melhorar</p>
-        <a href="#form-section" class="btn btn-light btn-lg fw-semibold">Enviar Reclamação</a>
+        <h1 class="fw-bold display-4">Sua voz importa</h1>
+        <p class="lead">Envie sua avaliação e ajude-nos a melhorar</p>
+        <a href="#form-section" class="btn btn-light btn-lg fw-semibold">Avalie</a>
       </div>
     </div>
 
@@ -23,9 +22,9 @@
     <div class="carousel-item hero-image-2">
       <div class="overlay"></div>
       <div class="carousel-caption text-center">
-        <h1 class="fw-bold display-4">Fale conosco 📨</h1>
+        <h1 class="fw-bold display-4">Fale conosco</h1>
         <p class="lead">Sua opinião ajuda a construir um serviço melhor</p>
-        <a href="#form-section" class="btn btn-light btn-lg fw-semibold">Contribuir</a>
+        <a href="#form-section" class="btn btn-light btn-lg fw-semibold">Avalie</a>
       </div>
     </div>
 
@@ -33,9 +32,9 @@
     <div class="carousel-item hero-image-3">
       <div class="overlay"></div>
       <div class="carousel-caption text-center">
-        <h1 class="fw-bold display-4">Atendimento humano 🤝</h1>
+        <h1 class="fw-bold display-4">Avalie</h1>
         <p class="lead">Estamos prontos para ouvir você</p>
-        <a href="#form-section" class="btn btn-light btn-lg fw-semibold">Participe</a>
+        <a href="#form-section" class="btn btn-light btn-lg fw-semibold">Avalie</a>
       </div>
     </div>
   </div>
@@ -49,12 +48,11 @@
   </button>
 </section>
 
-<!-- ============================= -->
-<!-- 📝 FORMULÁRIO DE RECLAMAÇÃO -->
-<!-- ============================= -->
+<!-- FORMULÁRIO -->
+
 <section id="form-section" class="container my-5" style="max-width: 600px;">
   <div class="card shadow-lg p-4">
-    <h2 class="text-center mb-4 text-primary fw-bold">Envie sua Reclamação</h2>
+    <h2 class="text-center mb-4 text-primary fw-bold">Envie sua avaliação</h2>
     <form action="{{ url_for('submit') }}" method="post" novalidate>
       <!-- Campo Nome -->
       <div class="mb-3">
