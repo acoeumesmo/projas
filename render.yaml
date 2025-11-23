@@ -7,4 +7,4 @@ services:
       pip install --upgrade pip
       pip install -r requirements.txt
     startCommand: gunicorn app:app
-    plan: free
+    plan:
