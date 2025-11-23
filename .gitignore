@@ -16,7 +16,7 @@ __pycache__/
 data/
 *.db
 *.sqlite3
-*.csv
+#*.csv
 *.json
 
 # Mas manter os seguintes arquivos de config:
