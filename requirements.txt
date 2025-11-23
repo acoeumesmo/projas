@@ -16,4 +16,3 @@ torch
 # Bibliotecas de Geração de Relatório em PDF (entrada_saida_grafico_.py)
 reportlab
 Pillow  # Para a função Image (logomarca)
-zoneinfo # Para datetime com fuso horário (necessário em alguns ambientes)
