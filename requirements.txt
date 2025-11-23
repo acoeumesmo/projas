@@ -1,19 +1,21 @@
-# Bibliotecas do Core da Aplicação Web (app.py)
+# Core da Aplicação Web
 Flask
 gunicorn
-python-dotenv  # Boa prática para gerenciar FLASK_SECRET_KEY, embora não esteja explícito, é útil.
+python-dotenv
 
-# Bibliotecas de Web Scraping (Web Scraping.py)
+# Web Scraping
 requests
 beautifulsoup4
 
-# Bibliotecas de Análise de Dados e Sentimento (entrada_saida_grafico_.py)
+# Análise de Dados e Sentimento (transformers + torch CPU-only)
 pandas
 transformers==4.37.2
 emoji
+
+# TORCH CPU-ONLY (evita instalar CUDA e impede timeout no Railway)
 torch==2.1.2+cpu
 --extra-index-url https://download.pytorch.org/whl/cpu
 
-# Bibliotecas de Geração de Relatório em PDF (entrada_saida_grafico_.py)
+# PDF e Imagens
 reportlab
-Pillow  # Para a função Image (logomarca)
+Pillow
