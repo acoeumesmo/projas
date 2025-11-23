@@ -14,8 +14,8 @@ from reportlab.lib.units import inch
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 import os
-os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
-os.environ["CUDA_VISIBLE_DEVICES"] = ""
+#os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
+#os.environ["CUDA_VISIBLE_DEVICES"] = ""
 import re
 import emoji
 
@@ -24,7 +24,7 @@ def analise_sentimento():
 
     # Configurações
     ## Arquivo CSV retirado localmente 
-    NOME_ARQUIVO_CSV = 'analise/quotes.csv'
+    NOME_ARQUIVO_CSV = '/tmp/quotes.csv'
     COLUNA_AVALIACOES = 'Texto'
 
     # Nome dinâmico do PDF
@@ -159,7 +159,7 @@ def analise_sentimento():
 
     
     # Salva pro dashboard
-    df.to_csv("analise/analise.csv", index=False, encoding="utf-8")
+    df.to_csv("/tmp/analise.csv", index=False, encoding="utf-8")
 
     # Gera o PDF
     # funções internas do PDF
@@ -224,9 +224,9 @@ def analise_sentimento():
 
     # Opcional: salva CSV consolidado para inspeção
     try:
-        df.to_csv("analise/analise.csv", index=False, encoding="utf-8")
+        df.to_csv("/tmp/analise.csv", index=False, encoding="utf-8")
     except Exception as e:
-        print(f"AVISO: não foi possível salvar analise/analise.csv: {e}")
+        print(f"AVISO: não foi possível salvar analise.csv: {e}")
 
     # Volta pro Flask: caminho do PDF + DataFrame
     return NOME_ARQUIVO_PDF, df

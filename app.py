@@ -82,7 +82,8 @@ def api_complaints():
 RESULTADOS = []   # variável global para o front-end acessar
 RESULTADOS_PDF = []
 
-@app.route("/admin/run-analysis", methods=["POST"])
+@app.route("/admin/run-analysis", methods=["GET","POST"])
+@app.route("/admin/run-analysis/", methods=["GET","POST"])
 def run_analysis():
     try:
         # 1. Rodar o Web Scraping (um script externo)

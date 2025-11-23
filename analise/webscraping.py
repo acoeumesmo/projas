@@ -5,7 +5,7 @@ url = 'http://127.0.0.1:8080/complaints'  #'https://projas.onrender.com/complain
 result = requests.get(url)
 soup = BeautifulSoup(result.text, 'html.parser')
 
-with open('analise/quotes.csv', 'w', newline='', encoding='utf-8') as f:
+with open('/tmp/quotes.csv', 'w', newline='', encoding='utf-8') as f:
     thewriter = writer(f)
     thewriter.writerow(['Autor', 'Texto'])  # cabeçalho
 
