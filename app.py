@@ -40,6 +40,7 @@ def save_complaints(complaints):
 def index():
     return render_template('index.html')
 
+    
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -67,6 +68,30 @@ def submit():
     return redirect(url_for('index'))
 
 
+#  Endpoint para o ESP8266
+@app.route('/api/submit-esp', methods=['POST'])
+def submit_esp():
+    data = request.get_json()
+
+    if not data or "nome" not in data or "descricao" not in data:
+        return jsonify({"erro": "Campos obrigatórios: nome, descricao"}), 400
+
+    complaint = {
+        "id": int(datetime.utcnow().timestamp() * 1000),
+        "nome": data["nome"],
+        "email": "esp8266@device",  # opcional — apenas para manter compatibilidade
+        "descricao": data["descricao"],
+        "created_at": datetime.utcnow().isoformat() + "Z"
+    }
+
+    complaints = load_complaints()
+    complaints.append(complaint)
+    save_complaints(complaints)
+
+    return jsonify({"status": "ok", "recebido": complaint}), 200
+
+
+
 @app.route('/complaints')
 def complaints():
     complaints = sorted(load_complaints(), key=lambda x: x['created_at'], reverse=True)
@@ -80,7 +105,7 @@ def api_complaints():
 #rota scraping/analise
 
 RESULTADOS = []   # variável global para o front-end acessar
-RESULTADOS_PDF = []
+RESULTADOS_PDF = [] # variável global para o front-end acessar
 
 @app.route("/admin/run-analysis", methods=["GET","POST"])
 @app.route("/admin/run-analysis/", methods=["GET","POST"])
@@ -101,11 +126,10 @@ def run_analysis():
             "error": "Erro ao executar webscraping.py",
             "details": e.stderr
         }), 500
-
     try:
+        
         # 2. Rodar a análise de sentimento (função Python interna)
         pdf_path, df = analise_sentimento()
-
         global RESULTADOS_PDF
         RESULTADOS_PDF = pdf_path
 
@@ -115,7 +139,6 @@ def run_analysis():
             "error": "Erro na função analise_sentimento()",
             "details": str(e)
         }), 500
-
     try:
         # 3. Converter para dicionário para enviar ao front-end
         global RESULTADOS

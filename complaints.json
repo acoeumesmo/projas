@@ -173,5 +173,33 @@
     "email": "rafael@rafael.com",
     "descricao": "Muito bom 😃, comprarei mais com certeza!!!",
     "created_at": "2025-11-22T15:16:05.429325Z"
+  },
+  {
+    "id": 1763980150876,
+    "nome": "Josue",
+    "email": "josue@josue.com",
+    "descricao": "Não gostei muito",
+    "created_at": "2025-11-24T07:29:10.876052Z"
+  },
+  {
+    "id": 1763980160504,
+    "nome": "Dispositivo IOT",
+    "email": "esp8266@device",
+    "descricao": "Avaliação negativa",
+    "created_at": "2025-11-24T07:29:20.504380Z"
+  },
+  {
+    "id": 1763980187591,
+    "nome": "Dispositivo IOT",
+    "email": "esp8266@device",
+    "descricao": "Avaliação neutra",
+    "created_at": "2025-11-24T07:29:47.591106Z"
+  },
+  {
+    "id": 1763980202466,
+    "nome": "Dispositivo IOT",
+    "email": "esp8266@device",
+    "descricao": "Avaliação Positiva",
+    "created_at": "2025-11-24T07:30:02.466834Z"
   }
 ]

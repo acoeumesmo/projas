@@ -24,7 +24,7 @@ def analise_sentimento():
 
     # Configurações
     ## Arquivo CSV retirado localmente 
-    NOME_ARQUIVO_CSV = '/tmp/quotes.csv'
+    NOME_ARQUIVO_CSV = 'quotes.csv'
     COLUNA_AVALIACOES = 'Texto'
 
     # Nome dinâmico do PDF
@@ -38,8 +38,7 @@ def analise_sentimento():
     NOME_ARQUIVO_PDF = f'relatorio_sentimento_{timestamp}.pdf'
 
     # Logomarca
-    CAMINHO_LOGOMARCA = 'logosoulcare.jpg'
-    
+    CAMINHO_LOGOMARCA = 'logo_soulcare.png'
     LARGURA_LOGOMARCA = 40
     ALTURA_LOGOMARCA = 40
 
@@ -151,7 +150,7 @@ def analise_sentimento():
                 row['Confianca_Texto'],
                 "Texto"
             ])
-
+    # Aplica a nova lógica para criar as colunas FINAIS
     df[['Sentimento', 'Estrelas_Preditas', 'Confianca', 'Modelo_Escolhido']] = df.apply(
         escolher_melhor_analise,
         axis=1
@@ -159,7 +158,7 @@ def analise_sentimento():
 
     
     # Salva pro dashboard
-    df.to_csv("/tmp/analise.csv", index=False, encoding="utf-8")
+    df.to_csv("analise.csv", index=False, encoding="utf-8")
 
     # Gera o PDF
     # funções internas do PDF
@@ -171,7 +170,7 @@ def analise_sentimento():
         header_text = f"Soulcare - Grupo 4"
 
         try:
-            header_picture = Image(CAMINHO_LOGOMARCA, width=50, height=50)
+            header_picture = Image(CAMINHO_LOGOMARCA, width=40, height=40)
             header_picture.drawOn(canvas, doc.leftMargin, page_height - 0.75 * inch)
         except:
             pass
@@ -224,7 +223,7 @@ def analise_sentimento():
 
     # Opcional: salva CSV consolidado para inspeção
     try:
-        df.to_csv("/tmp/analise.csv", index=False, encoding="utf-8")
+        df.to_csv("analise.csv", index=False, encoding="utf-8")
     except Exception as e:
         print(f"AVISO: não foi possível salvar analise.csv: {e}")
 

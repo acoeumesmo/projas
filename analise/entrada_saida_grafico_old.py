@@ -19,8 +19,8 @@ import emoji
 
 # --- Configurações ---
 ## Arquivo CSV retirado localmente
-NOME_ARQUIVO_CSV = 'analise_sentimento_alimentos.csv'
-COLUNA_AVALIACOES = 'Comentário_Consumidor'
+NOME_ARQUIVO_CSV = 'quotes.csv'
+COLUNA_AVALIACOES ='Texto'
 
 """ ## Retirada do arquivo pelo Google Drive
 NOME_ARQUIVO_CSV = '/content/drive/MyDrive/quotes2.csv'  # Troque pelo nome real do seu arquivo
@@ -480,4 +480,4 @@ try:
 except Exception as e:
     print(f"\n--- ERRO AO GERAR O PDF ---")
     print(f"ERRO: {e}")
-    print("Verifique se o arquivo 'DejaVuSans.ttf' está no local correto no seu Google Drive.")
+    print("Verifique se o arquivo 'DejaVuSans.ttf' está no local correto.")

@@ -1,0 +1,30 @@
+Autor,Texto,Sentimento_Texto,Estrelas_Texto,Confianca_Texto,Sentimento_Emoji,Estrelas_Emoji,Confianca_Emoji,Sentimento,Estrelas_Preditas,Confianca,Modelo_Escolhido
+Dispositivo IOT,Avaliação Positiva,Positivo,4,0.4160105586051941,Neutro,3,0.7303240895271301,Positivo,4,0.4160105586051941,Texto
+Dispositivo IOT,Avaliação neutra,Neutro,3,0.33645108342170715,Neutro,3,0.7737878561019897,Neutro,3,0.33645108342170715,Texto
+Dispositivo IOT,Avaliação negativa,Negativo,1,0.5103294849395752,Neutro,3,0.6463780999183655,Negativo,1,0.5103294849395752,Texto
+Josue,Não gostei muito,Negativo,2,0.5026185512542725,Neutro,3,0.7219904661178589,Negativo,2,0.5026185512542725,Texto
+Rafael,"Muito bom 😃, comprarei mais com certeza!!!",Positivo,5,0.7221201658248901,Positivo,5,0.8571431636810303,Positivo,5,0.7221201658248901,Texto
+Priscila,"Gostei muito 😁, virei um cliente fiel 👍🏼",Positivo,5,0.6460663080215454,Positivo,5,0.7956468462944031,Positivo,5,0.6460663080215454,Texto
+Lorena,Neutro 😐,Negativo,1,0.29539451003074646,Negativo,1,0.6242840886116028,Negativo,1,0.29539451003074646,Texto
+Patrícia,"Não gostei, o produto poderia entregar muito mais",Negativo,2,0.5280292630195618,Neutro,3,0.7915359139442444,Negativo,2,0.5280292630195618,Texto
+Leandro,Não atendeu as minhas espectativas 😠,Negativo,2,0.4706195592880249,Negativo,1,0.7031745910644531,Negativo,2,0.4706195592880249,Texto
+Davi,"Foi uma experiência sobrenatural, muito bom 😁",Positivo,5,0.6393305063247681,Positivo,5,0.6131880879402161,Positivo,5,0.6393305063247681,Texto
+Douglas,😁 muito bom!!!,Positivo,5,0.7134388089179993,Positivo,5,0.9818412065505981,Positivo,5,0.7134388089179993,Texto
+Geralda,Foi neutro 🥺,Negativo,1,0.38959816098213196,Neutro,3,0.635169267654419,Negativo,1,0.38959816098213196,Texto
+Fabiana,Foi uma experiencia incrível !!!,Positivo,5,0.7495073676109314,Neutro,3,0.6211920976638794,Positivo,5,0.7495073676109314,Texto
+Gael,Achei bem fora da realidade,Positivo,4,0.31045740842819214,Neutro,3,0.749315619468689,Positivo,4,0.31045740842819214,Texto
+Noa,"achei normal, nem sim nem não",Neutro,3,0.41085463762283325,Neutro,3,0.8354613184928894,Neutro,3,0.41085463762283325,Texto
+Pedro Klavin,"Muito bom , gostei do produto",Positivo,5,0.6568472981452942,Neutro,3,0.800864040851593,Positivo,5,0.6568472981452942,Texto
+Cortana,"Não gostei 😐, não é nem um pouco funcional",Negativo,2,0.5330371260643005,Neutro,3,0.5387696027755737,Negativo,2,0.5330371260643005,Texto
+John,"Gostei do produto 😀, foi muito útil na jornada até HALO.",Positivo,5,0.5607622265815735,Neutro,3,0.5419518947601318,Positivo,5,0.5607622265815735,Texto
+Bernardo Silva,Não gostei nem um pouco !!!,Negativo,1,0.47334763407707214,Neutro,3,0.6992021799087524,Negativo,1,0.47334763407707214,Texto
+Mario Antônio,Gostei do produto,Positivo,5,0.4726886451244354,Neutro,3,0.7436597347259521,Positivo,5,0.4726886451244354,Texto
+Abílio Diniz,Gostei,Positivo,5,0.4287186861038208,Neutro,3,0.6977747082710266,Positivo,5,0.4287186861038208,Texto
+Rafael Lima,não gostei,Negativo,1,0.5040590167045593,Neutro,3,0.6828848719596863,Negativo,1,0.5040590167045593,Texto
+test8,gostei muito !!!,Positivo,5,0.6609135270118713,Positivo,5,0.5088310837745667,Positivo,5,0.6609135270118713,Texto
+Rotas,gostei bastante !!!,Positivo,5,0.5372201204299927,Neutro,3,0.5064263939857483,Positivo,5,0.5372201204299927,Texto
+Opera,foi uma experiencia incrível !!!,Positivo,5,0.7495073676109314,Neutro,3,0.5642947554588318,Positivo,5,0.7495073676109314,Texto
+Tenet,Achei meio fora da realidade,Neutro,3,0.2493191808462143,Neutro,3,0.7290742993354797,Neutro,3,0.2493191808462143,Texto
+Arepo,"achei normal, nem sim nem não",Neutro,3,0.41085463762283325,Neutro,3,0.8354613184928894,Neutro,3,0.41085463762283325,Texto
+sator,"Muito bom , gostei do produto",Positivo,5,0.6568472981452942,Neutro,3,0.800864040851593,Positivo,5,0.6568472981452942,Texto
+fausto silva,gostei muito bixo!!!,Positivo,5,0.6015383005142212,Neutro,3,0.510579526424408,Positivo,5,0.6015383005142212,Texto
